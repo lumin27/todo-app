@@ -1,9 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import Input from "@/components/Input";
 import Todos from "@/components/Todos";
-import { Props } from "@/components/ChangeTodo";
 
-export default function Home({ todo }: { todo: Props }) {
+export default function Home() {
   return (
     <Box
       sx={{
@@ -26,7 +25,7 @@ export default function Home({ todo }: { todo: Props }) {
           alignItems: "center",
         }}>
         <Input />
-        <Todos todo={todo} />
+        <Todos />
       </Box>
     </Box>
   );

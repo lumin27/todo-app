@@ -5,7 +5,6 @@ import DoneIcon from "@mui/icons-material/Done";
 import { changeStatus, editTodo } from "@/libs/actions";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import Input from "./Input";
 
 export interface Props {
   id: string;

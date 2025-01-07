@@ -1,6 +1,6 @@
 import { prisma } from "@/libs/prisma";
 import { Box, IconButton } from "@mui/material";
-import ChangeTodo, { Props } from "./ChangeTodo";
+import ChangeTodo from "./ChangeTodo";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteTodo } from "@/libs/actions";
 
@@ -11,7 +11,7 @@ async function getTodos() {
   });
   return todos;
 }
-const Todos = async ({ todo }: { todo: Props }) => {
+const Todos = async () => {
   const todos = await getTodos();
   return (
     <Box
