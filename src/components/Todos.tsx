@@ -7,7 +7,7 @@ import { deleteTodo } from "@/libs/actions";
 async function getTodos() {
   const todos = await prisma.todo.findMany({
     select: { title: true, id: true, isCompleted: true },
-    orderBy: { createdAt: "asc" },
+    orderBy: { createdAt: "desc" },
   });
   return todos;
 }
