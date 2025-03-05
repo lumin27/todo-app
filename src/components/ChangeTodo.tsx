@@ -39,7 +39,7 @@ const ChangeTodo = ({ todo }: { todo: Props }) => {
             <Box>
               <input type='hidden' name='id' value={todo.id} />
               <TextField defaultValue={todo.title} name='title' size='small' />
-              <Button variant='contained' sx={{ ml: 2 }} type='submit'>
+              <Button variant='contained' sx={{ ml: 5 }} type='submit'>
                 Save
               </Button>
             </Box>

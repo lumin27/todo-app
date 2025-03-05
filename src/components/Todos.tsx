@@ -1,16 +1,8 @@
-import { prisma } from "@/libs/prisma";
 import { Box, IconButton } from "@mui/material";
 import ChangeTodo from "./ChangeTodo";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteTodo } from "@/libs/actions";
+import { deleteTodo, getTodos } from "@/libs/actions";
 
-async function getTodos() {
-  const todos = await prisma.todo.findMany({
-    select: { title: true, id: true, isCompleted: true },
-    orderBy: { createdAt: "desc" },
-  });
-  return todos;
-}
 const Todos = async () => {
   const todos = await getTodos();
   return (
@@ -18,7 +10,7 @@ const Todos = async () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: "100%",
+        width: "50%",
         mt: 2,
       }}>
       {todos.map((todo) => (
