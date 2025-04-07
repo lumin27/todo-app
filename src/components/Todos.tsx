@@ -2,7 +2,6 @@
 
 import { Box, CircularProgress, Paper } from "@mui/material";
 import ChangeTodo from "./ChangeTodo";
-import { getTodos } from "@/libs/actions";
 import { useEffect, useState } from "react";
 import { Props } from "./ChangeTodo";
 const Todos = ({ todos }: { todos: Props[] }) => {
