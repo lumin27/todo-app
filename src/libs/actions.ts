@@ -16,10 +16,11 @@ export async function createTodos(FormData: FormData) {
 }
 
 export async function changeStatus(FormData: FormData) {
+  console.log(FormData, "00000000");
   const id = FormData.get("id") as string;
   const todo = await prisma.todo.findUnique({ where: { id } });
 
-  const updateStatus = !todo?.isCompleted;
+  const updateStatus = !todo?.isCompleted as boolean;
   await prisma.todo.update({
     where: { id },
     data: { isCompleted: updateStatus },

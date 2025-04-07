@@ -1,42 +1,41 @@
-import { Box, IconButton } from "@mui/material";
-import ChangeTodo from "./ChangeTodo";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteTodo, getTodos } from "@/libs/actions";
+"use client";
 
-const Todos = async () => {
-  const todos = await getTodos();
+import { Box, CircularProgress, Paper } from "@mui/material";
+import ChangeTodo from "./ChangeTodo";
+import { getTodos } from "@/libs/actions";
+import { useEffect, useState } from "react";
+import { Props } from "./ChangeTodo";
+const Todos = () => {
+  const [todos, setTodos] = useState<Props[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      setLoading(true);
+      const data = await getTodos();
+      setTodos(data);
+      setLoading(false);
+    };
+    fetchTodos();
+  }, []);
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: "50%",
+        width: { xs: "95%", sm: "80%", md: "75%" },
         mt: 2,
       }}>
-      {todos.map((todo) => (
-        <Box key={todo.id} display={"flex"}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              border: "1px solid #ccc",
-              minWidth: "100%",
-              px: 1,
-              mb: 1,
-              borderRadius: 2,
-              bgcolor: todo.isCompleted ? "#f5f5f5" : "#fff",
-            }}>
-            <Box>{todo.title}</Box>
-            <ChangeTodo todo={todo} />
-          </Box>
-          <Box component={"form"} action={deleteTodo}>
-            <IconButton type='submit'>
-              <DeleteIcon />
-              <input type='hidden' name='id' value={todo.id} />
-            </IconButton>
-          </Box>
+      {loading && (
+        <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+          <CircularProgress />
         </Box>
+      )}
+      {todos.map((todo) => (
+        <Paper key={todo.id} sx={{ p: 2, mb: 1 }}>
+          <ChangeTodo todo={todo} key={todo.id} />
+        </Paper>
       ))}
     </Box>
   );

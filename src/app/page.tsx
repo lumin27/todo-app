@@ -6,8 +6,9 @@ export default function Home() {
   return (
     <Box
       sx={{
+        height: "100vh",
+        bgcolor: "#f5f5f5",
         display: "flex",
-        justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
       }}>
