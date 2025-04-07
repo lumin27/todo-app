@@ -14,6 +14,26 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const Input = () => {
   const [adding, setAdding] = useState(false);
+
+  const handleSubmit = async (formData: FormData) => {
+    setAdding(true);
+    try {
+      await createTodos(formData);
+    } catch (error) {
+      console.error("Error adding todo:", error);
+    } finally {
+      setAdding(false);
+    }
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    await handleSubmit(formData);
+    form.reset();
+  };
+
   return (
     <Box
       sx={{
@@ -36,7 +56,7 @@ const Input = () => {
         }}>
         <Box
           component={"form"}
-          action={createTodos}
+          onSubmit={handleFormSubmit}
           sx={{
             width: "100%",
             display: "flex",
@@ -50,7 +70,6 @@ const Input = () => {
             type='text'
           />
           <Button
-            onClick={() => setAdding(true)}
             type='submit'
             variant='contained'
             disabled={adding}

@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import Input from "@/components/Input";
 import Todos from "@/components/Todos";
+import { getTodos } from "@/libs/actions";
 
-export default function Home() {
+export default async function Home() {
+  const todos = await getTodos();
   return (
     <Box
       sx={{
@@ -13,7 +15,7 @@ export default function Home() {
         alignItems: "center",
       }}>
       <Input />
-      <Todos />
+      <Todos todos={todos} />
     </Box>
   );
 }

@@ -1,18 +1,17 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { prisma } from "./prisma";
 import { redirect } from "next/navigation";
 export async function createTodos(FormData: FormData) {
   const title = FormData.get("title") as string;
-
   if (!title) return;
-
   await prisma.todo.create({
     data: {
       title,
     },
   });
-  redirect("/");
+  revalidatePath("/");
 }
 
 export async function changeStatus(FormData: FormData) {
@@ -40,6 +39,7 @@ export async function getTodos() {
 export async function deleteTodo(FormData: FormData) {
   const id = FormData.get("id") as string;
   await prisma.todo.delete({ where: { id } });
+  revalidatePath("/");
   redirect("/");
 }
 

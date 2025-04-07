@@ -5,15 +5,12 @@ import ChangeTodo from "./ChangeTodo";
 import { getTodos } from "@/libs/actions";
 import { useEffect, useState } from "react";
 import { Props } from "./ChangeTodo";
-const Todos = () => {
-  const [todos, setTodos] = useState<Props[]>([]);
+const Todos = ({ todos }: { todos: Props[] }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchTodos = async () => {
       setLoading(true);
-      const data = await getTodos();
-      setTodos(data);
       setLoading(false);
     };
     fetchTodos();
