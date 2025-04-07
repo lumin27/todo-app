@@ -1,6 +1,6 @@
 "use client";
 
-import { createTodos, editTodo } from "@/libs/actions";
+import { createTodos } from "@/libs/actions";
 import {
   Box,
   Button,
@@ -50,6 +50,7 @@ const Input = () => {
             type='text'
           />
           <Button
+            onClick={() => setAdding(true)}
             type='submit'
             variant='contained'
             disabled={adding}

@@ -2,10 +2,8 @@
 
 import {
   Box,
-  Button,
   Checkbox,
   CircularProgress,
-  FormControlLabel,
   IconButton,
   TextField,
   Typography,
@@ -117,6 +115,7 @@ const ChangeTodo = ({ todo }: { todo: Props }) => {
               <input type='hidden' name='id' value={todo.id} />
               <input type='hidden' name='title' value={editText} />
               <IconButton
+                onClick={handlSubmit}
                 type='submit'
                 size='small'
                 color='primary'
